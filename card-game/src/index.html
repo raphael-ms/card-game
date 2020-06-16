@@ -1,5 +1,47 @@
 <!doctype html>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.15.1/firebase-app.js"></script>
+<script defer src="/__/firebase/7.15.1/firebase-app.js"></script>
+<!-- include only the Firebase features as you need -->
+<script defer src="/__/firebase/7.15.1/firebase-auth.js"></script>
+<script defer src="/__/firebase/7.15.1/firebase-database.js"></script>
+<script defer src="/__/firebase/7.15.1/firebase-messaging.js"></script>
+<script defer src="/__/firebase/7.15.1/firebase-storage.js"></script>
+<!-- initialize the SDK after all desired features are loaded -->
+<script defer src="/__/firebase/init.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.15.1/firebase-analytics.js"></script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v7.0&appId=647887348718375&autoLogAppEvents=1"
+  nonce="jWyyJV0m"></script>
+<script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '{card-game}',
+      cookie: true,
+      xfbml: true,
+      version: '{v1.0}'
+    });
+
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>CardGame</title>
@@ -10,7 +52,12 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
+
 <body>
+  <!-- <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="rounded"
+    data-auto-logout-link="false" data-use-continue-as="true" data-width=""></div> -->
   <app-root></app-root>
 </body>
+
 </html>
