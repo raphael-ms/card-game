@@ -13,42 +13,58 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, public router: Router) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
+        // this.user = user;
+        // localStorage.setItem('user', JSON.stringify(this.user));
+        this.router.navigate(['main-game']);
       } else {
         localStorage.setItem('user', null);
       }
     });
   }
 
-  register(email: string, password: string, user: string) {
-    const result = this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
-      this.router.navigate(['main-game']);
-      return result.user.updateProfile({
-        displayName: user
+  async register(email: string, password: string, userInformed: string) {
+    if (userInformed === '') {
+      throw new Error('NOME VAZIO: Informe seu nome, corretamente');
+    }
+    const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
+      this.afAuth.auth.currentUser.updateProfile({
+        displayName: userInformed
       });
+      localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
     })
       .catch(err => {
-        console.log('Something went wrong:', err.message);
+        if (err.code === 'auth/invalid-email') {
+          throw new Error('E-MAIL INCORRETO: O e-mail informado esta mal formatado');
+        }
+        if (err.code === 'auth/weak-password') {
+          throw new Error('SENHA FRACA: Sua senha tem que ter ao menos 6 caracteres');
+        }
+        if (err.code === 'auth/email-already-in-use') {
+          throw new Error('E-MAIL JÁ EM USO: O e-mail informado já esta sendo utilizado');
+        }
+
       });
-    this.sendEmailVerification();
   }
 
-  login(email: string, password: string) {
-    this.afAuth
+  async login(email: string, password: string) {
+    const result = await this.afAuth
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
         this.router.navigate(['main-game']);
+        localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
       })
       .catch(err => {
-        console.log('Something went wrong:', err.message);
+        if (err.code === 'auth/invalid-email') {
+          throw new Error('E-MAIL INCORRETO: O e-mail informado esta mal formatado');
+        }
+        if (err.code === 'auth/wrong-password') {
+          throw new Error('SENHA INCORRETA: A senha esta incorreta ou o e-mail não esta cadastrado');
+        }
+        if (err.code === 'auth/user-not-found') {
+          throw new Error('USUÁRIO NÃO ENCONTRADO: Não existe registros do e-mail informado. Esta conta deve ter sido deletada');
+        }
       });
-  }
-
-  sendEmailVerification() {
-    this.afAuth.auth.currentUser.sendEmailVerification();
-    this.router.navigate(['verify-email']);
   }
 
   sendPasswordResetEmail(passwordResetEmail: string) {
@@ -68,13 +84,11 @@ export class AuthService {
 
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(value => {
-      console.log('Success!', value);
-
+      localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
       this.router.navigate(['main-game']);
     })
       .catch(err => {
         console.log('Something went wrong:', err.message);
       });
-    this.sendEmailVerification();
   }
 }

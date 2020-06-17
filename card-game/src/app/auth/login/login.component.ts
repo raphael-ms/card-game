@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   email = '';
   name = '';
   password = '';
+  errorMessage = ' ';
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -22,17 +23,24 @@ export class LoginComponent implements OnInit {
   }
 
   validate() {
-    this.authService.login(this.email, this.password);
+    this.authService.login(this.email, this.password).then(value => {
+    }).catch(err => {
+      this.errorMessage = err.message;
+    });
   }
 
   register() {
-    this.authService.register(this.email, this.password, this.name);
+    this.authService.register(this.email, this.password, this.name).then(value => {
+    }).catch(err => {
+      this.errorMessage = err.message;
+    });
   }
 
   clearBox() {
     this.email = '';
     this.name = '';
     this.password = '';
+    this.errorMessage = '';
   }
 
   googleLogin() {
