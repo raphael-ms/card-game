@@ -1,0 +1,89 @@
+.player-card {
+  max-width: 300px;
+  float: left;
+}
+
+.enemy-card {
+  max-width: 300px;
+  float: right;
+  margin-right: 100px;
+  min-height: 600px;
+}
+
+.options-card {
+  max-width: 300px;
+  margin-left: 200px;
+  margin: 0;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-hero svg {
+  width: 14px;
+  height: 14px;
+}
+
+.options {
+  max-width: 300px;
+}
+
+.options-card button {
+  width: 300px;
+  margin: 1px;
+  background-color: teal;
+  color: white;
+}
+
+.example-header-image {
+  margin: 5px;
+  max-width: 290px;
+  max-height: 350px;
+  background-size: cover;
+}
+
+mat-card {
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+.column-1 {
+  display: table-caption;
+  float: left;
+  width: 150px;
+}
+.column-2 {
+  display: table-caption;
+  width: 150px;
+}
+
+p {
+  margin-left: 5px;
+}
+
+mat-card-header {
+  margin-left: -10px;
+}
+
+.score-box {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.result-box {
+  color: white;
+  width: 70px;
+  height: 70px;
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 48.5%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+}

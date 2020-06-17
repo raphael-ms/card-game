@@ -1,0 +1,4 @@
++ @angular/core@7.2.16
+added 1 package from 1 contributor and audited 1340 packages in 7.138s
+found 3 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details

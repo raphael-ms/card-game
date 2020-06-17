@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { Hero } from 'src/model/hero.model';
 
 @Injectable({
@@ -13,11 +13,6 @@ export class CardGameService {
   constructor(private http: HttpClient) { }
 
   getHero(id: string): Observable<Hero> {
-    const headers = new Headers();
-    headers.append('Access-Control-Allow-Origin', '*');
-
-
     return this.http.get<Hero>(`${this.API_URL}${id}`);
-//teste
   }
 }
