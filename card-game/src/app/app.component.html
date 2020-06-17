@@ -11,20 +11,13 @@
       playerHero.biography["full-name"]
     }}</mat-card-subtitle>
   </mat-card-header>
-  <img
-    mat-card-image
-    class="example-header-image"
-    src="{{ playerHero.image.url }}"
-    alt="Photo of {{ playerHero.biography['full-name'] }}"
-  />
+  <img mat-card-image class="example-header-image" src="{{ playerHero.image.url }}"
+    alt="Photo of {{ playerHero.biography['full-name'] }}" />
   <mat-card-content>
     <p>Selecione uma Habilidade:</p>
     <div class="column-1">
       <button (click)="checkIntelligence()" mat-button>
-        <svg-icon
-          src="assets/icons/intelligence.svg"
-          class="icon-hero"
-        ></svg-icon>
+        <svg-icon src="assets/icons/intelligence.svg" class="icon-hero"></svg-icon>
         INTELIGÊNCIA: {{ playerHero.powerstats.intelligence }}
       </button>
       <button (click)="checkStrength()" mat-button>
@@ -38,10 +31,7 @@
     </div>
     <div class="column-2">
       <button (click)="checkDurability()" mat-button>
-        <svg-icon
-          src="assets/icons/durability.svg"
-          class="icon-hero"
-        ></svg-icon>
+        <svg-icon src="assets/icons/durability.svg" class="icon-hero"></svg-icon>
         RESISTÊNCIA: {{ playerHero.powerstats.durability }}
       </button>
       <button (click)="checkPower()" mat-button>
@@ -73,32 +63,23 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
-        <svg-icon
-          src="assets/icons/intelligence.svg"
-          class="icon-hero"
-        ></svg-icon>
+        <svg-icon src="assets/icons/intelligence.svg" class="icon-hero"></svg-icon>
         INTELIGÊNCIA
       </button>
       <button mat-menu-item>
-        <svg-icon
-          src="assets/icons/intelligence.svg"
-          class="icon-hero"
-        ></svg-icon>
+        <svg-icon src="assets/icons/strength.svg" class="icon-hero"></svg-icon>
         FORÇA
       </button>
       <button mat-menu-item>
-        <svg-icon src="assets/icons/strength.svg" class="icon-hero"></svg-icon>
+        <svg-icon src="assets/icons/speed.svg" class="icon-hero"></svg-icon>
         VELOCIDADE
       </button>
       <button mat-menu-item>
-        <svg-icon src="assets/icons/speed.svg" class="icon-hero"></svg-icon>
+        <svg-icon src="assets/icons/durability.svg" class="icon-hero"></svg-icon>
         RESISTÊNCIA
       </button>
       <button mat-menu-item>
-        <svg-icon
-          src="assets/icons/durability.svg"
-          class="icon-hero"
-        ></svg-icon>
+        <svg-icon src="assets/icons/power.svg" class="icon-hero"></svg-icon>
         PODER
       </button>
       <button mat-menu-item>
@@ -116,21 +97,13 @@
       enemyHero.biography["full-name"]
     }}</mat-card-subtitle>
   </mat-card-header>
-  <img
-    *ngIf="showEnemy"
-    mat-card-image
-    class="example-header-image"
-    src="{{ enemyHero.image.url }}"
-    alt="Photo of {{ enemyHero.biography['full-name'] }}"
-  />
+  <img *ngIf="showEnemy" mat-card-image class="example-header-image" src="{{ enemyHero.image.url }}"
+    alt="Photo of {{ enemyHero.biography['full-name'] }}" />
   <mat-card-content>
     <p></p>
     <div class="column-1">
       <button *ngIf="showIntelligene" mat-button>
-        <svg-icon
-          src="assets/icons/intelligence.svg"
-          class="icon-hero"
-        ></svg-icon>
+        <svg-icon src="assets/icons/intelligence.svg" class="icon-hero"></svg-icon>
         INTELIGÊNCIA: {{ enemyHero.powerstats.intelligence }}
       </button>
       <button *ngIf="showStrength" mat-button>
@@ -144,10 +117,7 @@
     </div>
     <div class="column-2">
       <button *ngIf="showDurability" mat-button>
-        <svg-icon
-          src="assets/icons/durability.svg"
-          class="icon-hero"
-        ></svg-icon>
+        <svg-icon src="assets/icons/durability.svg" class="icon-hero"></svg-icon>
         RESISTÊNCIA: {{ enemyHero.powerstats.durability }}
       </button>
       <button *ngIf="showPower" mat-button>
