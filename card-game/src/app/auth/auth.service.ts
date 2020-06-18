@@ -67,8 +67,17 @@ export class AuthService {
       });
   }
 
-  sendPasswordResetEmail(passwordResetEmail: string) {
-    return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
+  async sendPasswordResetEmail(passwordResetEmail: string) {
+    await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail).then()
+      .catch(err => {
+        if (err.code === 'auth/invalid-email') {
+          throw new Error('E-MAIL INCORRETO: O e-mail informado esta mal formatado');
+        }
+        if (err.code === 'auth/user-not-found') {
+          throw new Error('USUÁRIO NÃO ENCONTRADO: Não existe registros do e-mail informado. Esta conta deve ter sido deletada');
+        }
+      });
+
   }
 
   logout() {
