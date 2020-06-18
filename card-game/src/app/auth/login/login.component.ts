@@ -10,8 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   email = '';
+  emailRecovery = '';
   name = '';
   password = '';
+  errorMessage = ' ';
+  showRecover = false;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -22,17 +25,34 @@ export class LoginComponent implements OnInit {
   }
 
   validate() {
-    this.authService.login(this.email, this.password);
+    this.authService.login(this.email, this.password).then(value => {
+    }).catch(err => {
+      this.errorMessage = err.message;
+    });
+  }
+  emailRecover() {
+    this.authService.sendPasswordResetEmail(this.emailRecovery).then(value => {
+    }).catch(err => {
+      this.errorMessage = err.message;
+    });
+    this.emailRecovery = '';
+    this.showRecover = false;
   }
 
   register() {
-    this.authService.register(this.email, this.password, this.name);
+    this.authService.register(this.email, this.password, this.name).then(value => {
+    }).catch(err => {
+      this.errorMessage = err.message;
+    });
   }
 
   clearBox() {
     this.email = '';
     this.name = '';
     this.password = '';
+    this.errorMessage = '';
+    this.showRecover = false;
+    this.emailRecovery = '';
   }
 
   googleLogin() {
@@ -54,5 +74,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  showForgotPass() {
+    this.showRecover = true;
+  }
 
 }

@@ -12,6 +12,7 @@
       <input matInput type="text" [(ngModel)]="name" placeholder="Nome" />
       <input type="email" [(ngModel)]="email" placeholder="Email" />
       <input type="password" [(ngModel)]="password" placeholder="Senha" />
+      <span style="color: red;" > {{ errorMessage }}</span>
       <button (click)="register()">Registrar</button>
     </div>
   </div>
@@ -27,8 +28,13 @@
       <span>ou</span>
       <input type="email" [(ngModel)]="email" placeholder="Email" />
       <input type="password" [(ngModel)]="password" placeholder="Senha" />
-      <a href="#">Esqueceu sua senha?</a>
+      <span style="color: red;" > {{ errorMessage }}</span>
       <button (click)="validate()">Entrar</button>
+      <a (click)="showForgotPass()">Esqueceu sua senha?</a>
+      <div *ngIf="showRecover">
+        <input type="email" [(ngModel)]="emailRecovery" placeholder="Email" />
+        <button (click)="emailRecover()">Enviar senha</button>
+      </div>
     </div>
   </div>
   <div class="overlay-container">
