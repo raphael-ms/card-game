@@ -22,6 +22,7 @@ export class CardGameComponent implements OnInit {
   showDurability = false;
   showPower = false;
   showCombat = false;
+  showPowerStatsCard = true;
   user: string;
   combatOption = true;
   powerOption = true;
@@ -277,6 +278,14 @@ export class CardGameComponent implements OnInit {
       }
     }
 
+  }
+  
+  showAboutCard(){
+    this.showPowerStatsCard = false;
+  }
+
+  showPowerStatus(){
+    this.showPowerStatsCard = true;
   }
 
 }

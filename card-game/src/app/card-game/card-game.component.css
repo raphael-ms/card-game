@@ -87,3 +87,54 @@ mat-card-header {
   transform: translate(-50%, -50%);
   z-index: 99999;
 }
+
+.wrapper-card-info-header-about a{
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 35px;
+}
+
+.wrapper-card-info-header-powerstatus{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-about-card{
+  border-radius: 100%;
+  border: none;
+  width: 30px;
+  height: 30px;
+  margin: auto 8px;
+  padding: 0px;
+  cursor: pointer;
+  background: none;
+}
+
+.wrapper-card-info-about{
+  padding-top: 10px;
+}
+
+.button-about-card:focus {
+  outline:0;
+}
+
+.button-about-card:active {
+  outline: none;
+  border: none;
+}
+
+.wrapper-card-info-about p{
+  margin-block-start: 0.2rem;
+  margin-block-end: 0.2rem;
+
+}
+
+.icon-about-card svg{
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
