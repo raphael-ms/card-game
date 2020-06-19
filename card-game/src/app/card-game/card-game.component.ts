@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from 'src/model/hero.model';
 import { CardGameService } from './card-game.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -15,13 +16,19 @@ export class CardGameComponent implements OnInit {
   coins = 10;
   result = '';
   showEnemy = false;
-  showIntelligene = false;
+  showIntelligence = false;
   showStrength = false;
   showSpeed = false;
   showDurability = false;
   showPower = false;
   showCombat = false;
   user: string;
+  combatOption = true;
+  powerOption = true;
+  durabilityOption = true;
+  speedOption = true;
+  strengthOption = true;
+  IntelligenceOption = true;
 
   constructor(
     private cardGameService: CardGameService) { }
@@ -72,6 +79,7 @@ export class CardGameComponent implements OnInit {
       this.getEnemyHero();
       this.result = '';
       this.hideEnemyCard();
+      this.showOptionSkill();
     }, 2000);
   }
 
@@ -203,7 +211,7 @@ export class CardGameComponent implements OnInit {
 
   unhideEnemyCard() {
     this.showEnemy = true;
-    this.showIntelligene = true;
+    this.showIntelligence = true;
     this.showStrength = true;
     this.showSpeed = true;
     this.showDurability = true;
@@ -213,7 +221,7 @@ export class CardGameComponent implements OnInit {
 
   hideEnemyCard() {
     this.showEnemy = false;
-    this.showIntelligene = false;
+    this.showIntelligence = false;
     this.showStrength = false;
     this.showSpeed = false;
     this.showDurability = false;
@@ -225,8 +233,52 @@ export class CardGameComponent implements OnInit {
     if (this.coins >= 1) {
       this.coins--;
       this.getPlayerHero();
+    } else {
+      this.result = 'SEM MOEDAS';
     }
   }
 
+  showOptionSkill() {
+    this.combatOption = true;
+    this.powerOption = true;
+    this.durabilityOption = true;
+    this.speedOption = true;
+    this.strengthOption = true;
+    this.IntelligenceOption = true;
+
+  }
+
+  showSkill(skill: string) {
+    if (this.coins >= 3) {
+      this.coins = this.coins - 3;
+      if (skill === 'power') {
+        this.showPower = true;
+        this.powerOption = false;
+      }
+      if (skill === 'combat') {
+        this.showCombat = true;
+        this.combatOption = false;
+      }
+      if (skill === 'durability') {
+        this.showDurability = true;
+        this.durabilityOption = false;
+      }
+      if (skill === 'intelligence') {
+        this.showIntelligence = true;
+        this.IntelligenceOption = false;
+      }
+      if (skill === 'speed') {
+        this.showSpeed = true;
+        this.speedOption = false;
+      }
+      if (skill === 'strength') {
+        this.showStrength = true;
+        this.strengthOption = false;
+      }
+    }
+
+  }
 
 }
+
+

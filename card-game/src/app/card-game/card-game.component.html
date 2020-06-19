@@ -57,27 +57,27 @@
       DESCOBRIR UMA HABILIDADE
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button (click)="showSkill('intelligence')" mat-menu-item *ngIf="IntelligenceOption">
         <svg-icon src="assets/icons/intelligence.svg" class="icon-hero"></svg-icon>
         INTELIGÊNCIA
       </button>
-      <button mat-menu-item>
+      <button (click)="showSkill('strength')" mat-menu-item *ngIf="strengthOption">
         <svg-icon src="assets/icons/strength.svg" class="icon-hero"></svg-icon>
         FORÇA
       </button>
-      <button mat-menu-item>
+      <button (click)="showSkill('speed')" mat-menu-item *ngIf="speedOption">
         <svg-icon src="assets/icons/speed.svg" class="icon-hero"></svg-icon>
         VELOCIDADE
       </button>
-      <button mat-menu-item>
+      <button (click)="showSkill('durability')" mat-menu-item *ngIf="durabilityOption">
         <svg-icon src="assets/icons/durability.svg" class="icon-hero"></svg-icon>
         RESISTÊNCIA
       </button>
-      <button mat-menu-item>
+      <button (click)="showSkill('power')" mat-menu-item *ngIf="powerOption">
         <svg-icon src="assets/icons/power.svg" class="icon-hero"></svg-icon>
         PODER
       </button>
-      <button mat-menu-item>
+      <button (click)="showSkill('combat')" mat-menu-item *ngIf="combatOption">
         <svg-icon src="assets/icons/combat.svg" class="icon-hero"></svg-icon>
         COMBATIVIDADE
       </button>
@@ -97,7 +97,7 @@
   <mat-card-content>
     <p></p>
     <div class="column-1">
-      <button *ngIf="showIntelligene" mat-button>
+      <button *ngIf="showIntelligence" mat-button>
         <svg-icon src="assets/icons/intelligence.svg" class="icon-hero"></svg-icon>
         INTELIGÊNCIA: {{ enemyHero.powerstats.intelligence }}
       </button>
