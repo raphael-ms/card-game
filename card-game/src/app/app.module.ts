@@ -11,13 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { LoginComponent } from './auth/login/login.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { CardGameComponent } from './card-game/card-game.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -25,7 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, ForgotPasswordComponent, VerifyEmailComponent, CardGameComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -41,6 +40,7 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.config),
     AngularSvgIconModule.forRoot(),
     AngularFireAuthModule,
+    AngularFireDatabaseModule,
     MatIconModule,
     MatInputModule,
     MatTooltipModule

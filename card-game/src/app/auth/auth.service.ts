@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
+import { ValidationEnum } from 'src/shared/enums/validation.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,12 @@ import { User } from 'firebase';
 export class AuthService {
   user: User;
 
-  constructor(public afAuth: AngularFireAuth, public router: Router) {
+  constructor(public afAuth: AngularFireAuth, private ngZone: NgZone, public router: Router) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         // this.user = user;
         // localStorage.setItem('user', JSON.stringify(this.user));
-        this.router.navigate(['main-game']);
+        this.ngZone.run(() => this.router.navigate(['main-game'])).then();
       } else {
         localStorage.setItem('user', null);
       }
@@ -24,7 +25,7 @@ export class AuthService {
 
   async register(email: string, password: string, userInformed: string) {
     if (userInformed === '') {
-      throw new Error('NOME VAZIO: Informe seu nome, corretamente');
+      throw new Error(ValidationEnum.EMPTY_NAME_MSG);
     }
     const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
       this.afAuth.auth.currentUser.updateProfile({
@@ -33,14 +34,14 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
     })
       .catch(err => {
-        if (err.code === 'auth/invalid-email') {
-          throw new Error('E-MAIL INCORRETO: O e-mail informado esta mal formatado');
+        if (err.code === ValidationEnum.INVALID_EMAIL) {
+          throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
         }
-        if (err.code === 'auth/weak-password') {
-          throw new Error('SENHA FRACA: Sua senha tem que ter ao menos 6 caracteres');
+        if (err.code === ValidationEnum.WEAK_PASSWORD) {
+          throw new Error(ValidationEnum.WEAK_PASSWORD_MSG);
         }
-        if (err.code === 'auth/email-already-in-use') {
-          throw new Error('E-MAIL JÁ EM USO: O e-mail informado já esta sendo utilizado');
+        if (err.code === ValidationEnum.EMAIL_IN_USE) {
+          throw new Error(ValidationEnum.EMAIL_IN_USE_MSG);
         }
 
       });
@@ -51,18 +52,18 @@ export class AuthService {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        this.router.navigate(['main-game']);
+        this.ngZone.run(() => this.router.navigate(['main-game'])).then();
         localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
       })
       .catch(err => {
-        if (err.code === 'auth/invalid-email') {
-          throw new Error('E-MAIL INCORRETO: O e-mail informado esta mal formatado');
+        if (err.code === ValidationEnum.INVALID_EMAIL) {
+          throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
         }
-        if (err.code === 'auth/wrong-password') {
-          throw new Error('SENHA INCORRETA: A senha esta incorreta ou o e-mail não esta cadastrado');
+        if (err.code === ValidationEnum.WRONG_PASSWORD) {
+          throw new Error(ValidationEnum.WRONG_PASSWORD_MSG);
         }
-        if (err.code === 'auth/user-not-found') {
-          throw new Error('USUÁRIO NÃO ENCONTRADO: Não existe registros do e-mail informado. Esta conta deve ter sido deletada');
+        if (err.code === ValidationEnum.USER_NOT_FOUND) {
+          throw new Error(ValidationEnum.USER_NOT_FOUND_MSG);
         }
       });
   }
@@ -70,11 +71,11 @@ export class AuthService {
   async sendPasswordResetEmail(passwordResetEmail: string) {
     await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail).then()
       .catch(err => {
-        if (err.code === 'auth/invalid-email') {
-          throw new Error('E-MAIL INCORRETO: O e-mail informado esta mal formatado');
+        if (err.code === ValidationEnum.INVALID_EMAIL) {
+          throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
         }
-        if (err.code === 'auth/user-not-found') {
-          throw new Error('USUÁRIO NÃO ENCONTRADO: Não existe registros do e-mail informado. Esta conta deve ter sido deletada');
+        if (err.code === ValidationEnum.USER_NOT_FOUND) {
+          throw new Error(ValidationEnum.USER_NOT_FOUND_MSG);
         }
       });
 
@@ -83,7 +84,7 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut();
     localStorage.removeItem('user');
-    this.router.navigate(['login']);
+    this.ngZone.run(() => this.router.navigate(['login'])).then();
   }
 
   isLoggedIn(): boolean {
@@ -94,7 +95,7 @@ export class AuthService {
   loginWithGoogle() {
     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(value => {
       localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
-      this.router.navigate(['main-game']);
+      this.ngZone.run(() => this.router.navigate(['main-game'])).then();
     })
       .catch(err => {
         console.log('Something went wrong:', err.message);

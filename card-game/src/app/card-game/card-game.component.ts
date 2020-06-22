@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from 'src/model/hero.model';
 import { CardGameService } from './card-game.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
+import { PlayerService } from '../player.service';
+import { Player } from 'src/model/player.model';
+import { map } from 'rxjs/operators';
+import { UtilsEnum } from 'src/shared/enums/utils.enum';
+import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
 @Component({
   selector: 'app-card-game',
   templateUrl: './card-game.component.html',
-  styleUrls: ['./card-game.component.css']
+  styleUrls: ['./card-game.component.css'],
+  animations: [moveIn(), fallIn(), moveInLeft()],
+  host: { '[@moveIn]': '' }
 })
 export class CardGameComponent implements OnInit {
+  state = '';
   playerHero: Hero;
   enemyHero: Hero;
+  player: Player;
+  playerList: Player[];
   score = 0;
-  coins = 10;
   result = '';
+  key: string;
   showEnemy = false;
   showIntelligence = false;
   showStrength = false;
@@ -23,20 +31,34 @@ export class CardGameComponent implements OnInit {
   showPower = false;
   showCombat = false;
   showPowerStatsCard = true;
-  user: string;
+  userLogged;
   combatOption = true;
   powerOption = true;
   durabilityOption = true;
   speedOption = true;
   strengthOption = true;
   IntelligenceOption = true;
+  playerKey: string;
 
   constructor(
-    private cardGameService: CardGameService) { }
+    private cardGameService: CardGameService, private playerService: PlayerService) { }
 
   ngOnInit() {
     this.getEnemyHero();
     this.getPlayerHero();
+    this.userLogged = JSON.parse(localStorage.getItem('user'));
+    this.playerService.getItemList(this.userLogged.uid).subscribe(playerList => {
+      if (playerList.length === 0) {
+        this.player = new Player();
+        this.player.name = this.userLogged.displayName;
+        this.player.maxScore = 0;
+        this.player.coins = UtilsEnum.INITIAL_COINS;
+        this.playerService.insert(this.userLogged.uid, this.player);
+      } else {
+        this.playerKey = playerList[0].key;
+        this.player = playerList[0] as unknown as Player;
+      }
+    });
   }
 
   getRandomId(min: number, max: number) {
@@ -88,18 +110,18 @@ export class CardGameComponent implements OnInit {
     this.unhideEnemyCard();
     if (parseInt(this.playerHero.powerstats.intelligence) > parseInt(this.enemyHero.powerstats.intelligence)) {
       this.score++;
-      this.result = 'VITÓRIA';
+      this.result = UtilsEnum.MATCH_VICTORY;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.intelligence) === parseInt(this.enemyHero.powerstats.intelligence)) {
-      this.result = 'EMPATE';
+      this.result = UtilsEnum.MATCH_DRAW;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.intelligence) < parseInt(this.enemyHero.powerstats.intelligence)) {
       this.score = 0;
-      this.result = 'DERROTA';
+      this.result = UtilsEnum.MATCH_DEFEAT;
       this.refreshHeroes();
       return;
     }
@@ -109,18 +131,18 @@ export class CardGameComponent implements OnInit {
     this.unhideEnemyCard();
     if (parseInt(this.playerHero.powerstats.strength) > parseInt(this.enemyHero.powerstats.strength)) {
       this.score++;
-      this.result = 'VITÓRIA';
+      this.result = UtilsEnum.MATCH_VICTORY;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.strength) === parseInt(this.enemyHero.powerstats.strength)) {
       this.refreshHeroes();
-      this.result = 'EMPATE';
+      this.result = UtilsEnum.MATCH_DRAW;
       return;
     }
     if (parseInt(this.playerHero.powerstats.strength) < parseInt(this.enemyHero.powerstats.strength)) {
       this.score = 0;
-      this.result = 'DERROTA';
+      this.result = UtilsEnum.MATCH_DEFEAT;
       this.refreshHeroes();
       return;
     }
@@ -130,18 +152,18 @@ export class CardGameComponent implements OnInit {
     this.unhideEnemyCard();
     if (parseInt(this.playerHero.powerstats.speed) > parseInt(this.enemyHero.powerstats.speed)) {
       this.score++;
-      this.result = 'VITÓRIA';
+      this.result = UtilsEnum.MATCH_VICTORY;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.speed) === parseInt(this.enemyHero.powerstats.speed)) {
-      this.result = 'EMPATE';
+      this.result = UtilsEnum.MATCH_DRAW;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.speed) < parseInt(this.enemyHero.powerstats.speed)) {
       this.score = 0;
-      this.result = 'DERROTA';
+      this.result = UtilsEnum.MATCH_DEFEAT;
       this.refreshHeroes();
       return;
     }
@@ -151,18 +173,18 @@ export class CardGameComponent implements OnInit {
     this.unhideEnemyCard();
     if (parseInt(this.playerHero.powerstats.durability) > parseInt(this.enemyHero.powerstats.durability)) {
       this.score++;
-      this.result = 'VITÓRIA';
+      this.result = UtilsEnum.MATCH_VICTORY;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.durability) === parseInt(this.enemyHero.powerstats.durability)) {
-      this.result = 'EMPATE';
+      this.result = UtilsEnum.MATCH_DRAW;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.durability) < parseInt(this.enemyHero.powerstats.durability)) {
       this.score = 0;
-      this.result = 'DERROTA';
+      this.result = UtilsEnum.MATCH_DEFEAT;
       this.refreshHeroes();
       return;
     }
@@ -172,18 +194,18 @@ export class CardGameComponent implements OnInit {
     this.unhideEnemyCard();
     if (parseInt(this.playerHero.powerstats.power) > parseInt(this.enemyHero.powerstats.power)) {
       this.score++;
-      this.result = 'VITÓRIA';
+      this.result = UtilsEnum.MATCH_VICTORY;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.power) === parseInt(this.enemyHero.powerstats.power)) {
-      this.result = 'EMPATE';
+      this.result = UtilsEnum.MATCH_DRAW;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.power) < parseInt(this.enemyHero.powerstats.power)) {
       this.score = 0;
-      this.result = 'DERROTA';
+      this.result = UtilsEnum.MATCH_DEFEAT;
       this.refreshHeroes();
       return;
     }
@@ -193,18 +215,18 @@ export class CardGameComponent implements OnInit {
     this.unhideEnemyCard();
     if (parseInt(this.playerHero.powerstats.combat) > parseInt(this.enemyHero.powerstats.combat)) {
       this.score++;
-      this.result = 'VITÓRIA';
+      this.result = UtilsEnum.MATCH_VICTORY;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.combat) === parseInt(this.enemyHero.powerstats.combat)) {
-      this.result = 'EMPATE';
+      this.result = UtilsEnum.MATCH_DRAW;
       this.refreshHeroes();
       return;
     }
     if (parseInt(this.playerHero.powerstats.combat) < parseInt(this.enemyHero.powerstats.combat)) {
       this.score = 0;
-      this.result = 'DERROTA';
+      this.result = UtilsEnum.MATCH_DEFEAT;
       this.refreshHeroes();
       return;
     }
@@ -231,11 +253,12 @@ export class CardGameComponent implements OnInit {
   }
 
   changeCard() {
-    if (this.coins >= 1) {
-      this.coins--;
+    if (this.player.coins >= 3) {
+      this.player.coins -= 3;
+      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
       this.getPlayerHero();
     } else {
-      this.result = 'SEM MOEDAS';
+      this.result = UtilsEnum.NO_COINS;
     }
   }
 
@@ -250,8 +273,9 @@ export class CardGameComponent implements OnInit {
   }
 
   showSkill(skill: string) {
-    if (this.coins >= 3) {
-      this.coins = this.coins - 3;
+    if (this.player.coins >= 3) {
+      this.player.coins -= 3;
+      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
       if (skill === 'power') {
         this.showPower = true;
         this.powerOption = false;
@@ -279,12 +303,12 @@ export class CardGameComponent implements OnInit {
     }
 
   }
-  
-  showAboutCard(){
+
+  showAboutCard() {
     this.showPowerStatsCard = false;
   }
 
-  showPowerStatus(){
+  showPowerStatus() {
     this.showPowerStatsCard = true;
   }
 

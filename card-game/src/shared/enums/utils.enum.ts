@@ -1,0 +1,7 @@
+export enum UtilsEnum {
+  INITIAL_COINS = 10,
+  NO_COINS = 'SEM MOEDAS',
+  MATCH_VICTORY = 'VITÓRIA',
+  MATCH_DEFEAT = 'DERROTA',
+  MATCH_DRAW = 'EMPATE'
+}
