@@ -47,10 +47,15 @@ export class CardGameComponent implements OnInit {
     this.getEnemyHero();
     this.getPlayerHero();
     this.userLogged = JSON.parse(localStorage.getItem('user'));
+    const displayName = JSON.parse(localStorage.getItem('displayName'));
     this.playerService.getItemList(this.userLogged.uid).subscribe(playerList => {
       if (playerList.length === 0) {
         this.player = new Player();
-        this.player.name = this.userLogged.displayName;
+        if (displayName !== null) {
+          this.player.name = displayName;
+        } else {
+          this.player.name = this.userLogged.displayName;
+        }
         this.player.maxScore = 0;
         this.player.coins = UtilsEnum.INITIAL_COINS;
         this.playerService.insert(this.userLogged.uid, this.player);

@@ -14,11 +14,10 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, private ngZone: NgZone, public router: Router) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        // this.user = user;
-        // localStorage.setItem('user', JSON.stringify(this.user));
         this.ngZone.run(() => this.router.navigate(['main-game'])).then();
       } else {
         localStorage.setItem('user', null);
+        localStorage.setItem('displayName', null);
       }
     });
   }
@@ -31,6 +30,8 @@ export class AuthService {
       this.afAuth.auth.currentUser.updateProfile({
         displayName: userInformed
       });
+      console.log('usuario: ', this.afAuth.auth.currentUser);
+      localStorage.setItem('displayName', JSON.stringify(userInformed));
       localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
     })
       .catch(err => {
@@ -84,6 +85,7 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut();
     localStorage.removeItem('user');
+    localStorage.removeItem('displayName');
     this.ngZone.run(() => this.router.navigate(['login'])).then();
   }
 
