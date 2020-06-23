@@ -1,26 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { User } from 'firebase';
 import { Router } from '@angular/router';
+import { moveIn, fallIn } from '../../router.animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [moveIn(), fallIn()],
+  host: { '[@moveIn]': '' }
 })
 export class LoginComponent implements OnInit {
   email = '';
+  state = '';
   emailRecovery = '';
   name = '';
   password = '';
   errorMessage = ' ';
   showRecover = false;
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService,private ngZone: NgZone, private router: Router) { }
 
   ngOnInit() {
     this.style();
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['main-game']);
+      this.ngZone.run(() => this.router.navigate(['main-game'])).then();
     }
   }
 
