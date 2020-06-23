@@ -22,29 +22,29 @@
     </div>
     <div class="wrapper-card-info-powerstats" *ngIf="showPowerStatsCard">
       <div class="column-1">
-        <button (click)="checkIntelligence()" mat-button>
+        <button appPreventDoubleClick (oneClick)="checkIntelligence()" mat-button>
           <svg-icon src="assets/icons/intelligence.svg" class="icon-hero"></svg-icon>
           INTELIGÊNCIA: {{ playerHero.powerstats.intelligence }}
         </button>
-        <button (click)="checkStrength()" mat-button>
+        <button appPreventDoubleClick (oneClick)="checkStrength()" mat-button>
           <svg-icon src="assets/icons/strength.svg" class="icon-hero"></svg-icon>
           FORÇA: {{ playerHero.powerstats.strength }}
         </button>
-        <button (click)="checkSpeed()" mat-button>
+        <button appPreventDoubleClick (oneClick)="checkSpeed()" mat-button>
           <svg-icon src="assets/icons/speed.svg" class="icon-hero"></svg-icon>
           VELOCIDADE: {{ playerHero.powerstats.speed }}
         </button>
       </div>
       <div class="column-2">
-        <button (click)="checkDurability()" mat-button>
+        <button appPreventDoubleClick (oneClick)="checkDurability()" mat-button>
           <svg-icon src="assets/icons/durability.svg" class="icon-hero"></svg-icon>
           RESISTÊNCIA: {{ playerHero.powerstats.durability }}
         </button>
-        <button (click)="checkPower()" mat-button>
+        <button appPreventDoubleClick (oneClick)="checkPower()" mat-button>
           <svg-icon src="assets/icons/power.svg" class="icon-hero"></svg-icon>
           PODER: {{ playerHero.powerstats.power }}
         </button>
-        <button (click)="checkCombat()" mat-button>
+        <button appPreventDoubleClick (oneClick)="checkCombat()" mat-button>
           <svg-icon src="assets/icons/combat.svg" class="icon-hero"></svg-icon>
           COMBATIVIDADE: {{ playerHero.powerstats.combat }}
         </button>

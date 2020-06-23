@@ -24,8 +24,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { environment } from 'src/environments/environment';
 
+// custom directives
+import { PreventDoubleClickDirective } from '../directives/no-double-click.directive';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, ForgotPasswordComponent, VerifyEmailComponent, CardGameComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    LoginComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
+    CardGameComponent,
+    PreventDoubleClickDirective
+  ],
   imports: [
     BrowserModule,
     CommonModule,
