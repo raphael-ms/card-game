@@ -1,0 +1,24 @@
+.banner {
+  margin-top: 30px;
+  background-image: url('../../assets/game-over.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 90px;
+}
+
+.body {
+  min-width: 500px;
+  min-height: 320px;
+}
+
+.record {
+  text-align: center;
+}
+
+.try-again-button {
+  width: 500px;
+    height: 60px;
+    background-color: #1898dc;
+    color: white;
+    font-size: 20px;
+}

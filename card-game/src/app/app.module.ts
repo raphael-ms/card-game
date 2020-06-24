@@ -22,9 +22,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { environment } from 'src/environments/environment';
+import { GameOverComponent } from './game-over/game-over.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -43,9 +45,11 @@ import { environment } from 'src/environments/environment';
     AngularFireDatabaseModule,
     MatIconModule,
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [GameOverComponent]
 })
 export class AppModule { }

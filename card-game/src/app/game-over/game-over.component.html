@@ -1,0 +1,13 @@
+<div class="body">
+  <div class="banner"></div>
+  <div mat-dialog-content>
+    <h2> Usuário: {{data.player.name}}</h2>
+    <h3> Pontuação: {{data.score}} </h3>
+  </div>
+  <div class="record" *ngIf="data.score > data.player.maxScore">
+    <h1>NOVO RECORDE!!!</h1>
+  </div>
+  <div mat-dialog-actions>
+    <button class="try-again-button" mat-button [mat-dialog-close] cdkFocusInitial>JOGAR NOVAMENTE</button>
+  </div>
+</div>

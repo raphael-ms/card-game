@@ -6,6 +6,9 @@ import { Player } from 'src/model/player.model';
 import { map } from 'rxjs/operators';
 import { UtilsEnum } from 'src/shared/enums/utils.enum';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
+import { MatDialog } from '@angular/material/dialog';
+import { GameOverComponent } from '../game-over/game-over.component';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-card-game',
@@ -41,7 +44,9 @@ export class CardGameComponent implements OnInit {
   playerKey: string;
 
   constructor(
-    private cardGameService: CardGameService, private playerService: PlayerService) { }
+    private cardGameService: CardGameService,
+    private playerService: PlayerService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getEnemyHero();
@@ -70,6 +75,21 @@ export class CardGameComponent implements OnInit {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+
+  gameOver() {
+    const dialogRef = this.dialog.open(GameOverComponent, {
+      data: { player: this.player, score: this.score }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (this.player.maxScore < this.score) {
+        this.player.maxScore = this.score;
+      }
+      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+      this.score = 0;
+      this.refreshHeroes();
+    });
   }
 
   getPlayerHero() {
@@ -125,9 +145,7 @@ export class CardGameComponent implements OnInit {
       return;
     }
     if (parseInt(this.playerHero.powerstats.intelligence) < parseInt(this.enemyHero.powerstats.intelligence)) {
-      this.score = 0;
-      this.result = UtilsEnum.MATCH_DEFEAT;
-      this.refreshHeroes();
+      this.gameOver();
       return;
     }
   }
@@ -146,9 +164,7 @@ export class CardGameComponent implements OnInit {
       return;
     }
     if (parseInt(this.playerHero.powerstats.strength) < parseInt(this.enemyHero.powerstats.strength)) {
-      this.score = 0;
-      this.result = UtilsEnum.MATCH_DEFEAT;
-      this.refreshHeroes();
+      this.gameOver();
       return;
     }
   }
@@ -167,9 +183,7 @@ export class CardGameComponent implements OnInit {
       return;
     }
     if (parseInt(this.playerHero.powerstats.speed) < parseInt(this.enemyHero.powerstats.speed)) {
-      this.score = 0;
-      this.result = UtilsEnum.MATCH_DEFEAT;
-      this.refreshHeroes();
+      this.gameOver();
       return;
     }
   }
@@ -188,9 +202,7 @@ export class CardGameComponent implements OnInit {
       return;
     }
     if (parseInt(this.playerHero.powerstats.durability) < parseInt(this.enemyHero.powerstats.durability)) {
-      this.score = 0;
-      this.result = UtilsEnum.MATCH_DEFEAT;
-      this.refreshHeroes();
+      this.gameOver();
       return;
     }
   }
@@ -209,9 +221,7 @@ export class CardGameComponent implements OnInit {
       return;
     }
     if (parseInt(this.playerHero.powerstats.power) < parseInt(this.enemyHero.powerstats.power)) {
-      this.score = 0;
-      this.result = UtilsEnum.MATCH_DEFEAT;
-      this.refreshHeroes();
+      this.gameOver();
       return;
     }
   }
@@ -230,9 +240,7 @@ export class CardGameComponent implements OnInit {
       return;
     }
     if (parseInt(this.playerHero.powerstats.combat) < parseInt(this.enemyHero.powerstats.combat)) {
-      this.score = 0;
-      this.result = UtilsEnum.MATCH_DEFEAT;
-      this.refreshHeroes();
+      this.gameOver();
       return;
     }
   }
