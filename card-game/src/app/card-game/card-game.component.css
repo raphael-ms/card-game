@@ -11,7 +11,7 @@
 }
 
 .options-card {
-  max-width: 300px;
+  max-width: 350px;
   margin-left: 200px;
   margin: 0;
   position: absolute;
@@ -19,6 +19,7 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+
 }
 
 .icon-hero svg {
@@ -27,11 +28,11 @@
 }
 
 .options {
-  max-width: 300px;
+max-width: 300px;
 }
 
 .options-card button {
-  width: 300px;
+  width: 350px;
   margin: 1px;
   background-color: teal;
   color: white;
@@ -135,6 +136,12 @@ mat-card-header {
   height: 20px;
   margin: auto;
   display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-coin svg{
+  width: 25px;
+  height: 25px;
   vertical-align: middle;
 }
 

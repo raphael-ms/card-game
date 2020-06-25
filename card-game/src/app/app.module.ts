@@ -25,8 +25,10 @@ import { environment } from 'src/environments/environment';
 import { GameOverComponent } from './game-over/game-over.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
+// custom directives
+import { PreventDoubleClickDirective } from '../directives/no-double-click.directive';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective],
   imports: [
     BrowserModule,
     CommonModule,

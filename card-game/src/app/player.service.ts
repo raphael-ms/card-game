@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Player } from '../model/player.model';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class PlayerService {
   userId: string;
 
-  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth, private ngZone: NgZone, public router: Router) {
     this.auth.authState.subscribe(user => {
       if (user) {
         this.userId = user.uid;
       } else {
         this.userId = null;
+        this.ngZone.run(() => this.router.navigate(['login'])).then();
       }
     });
   }

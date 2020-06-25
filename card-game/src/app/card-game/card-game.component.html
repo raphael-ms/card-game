@@ -23,29 +23,29 @@
       </div>
       <div class="wrapper-card-info-powerstats" *ngIf="showPowerStatsCard">
         <div class="column-1">
-          <button (click)="checkIntelligence()" mat-button>
+          <button appPreventDoubleClick (oneClick)="checkIntelligence()" mat-button>
             <svg-icon src="assets/icons/intelligence.svg" class="icon-hero"></svg-icon>
             INTELIGÊNCIA: {{ playerHero.powerstats.intelligence }}
           </button>
-          <button (click)="checkStrength()" mat-button>
+          <button appPreventDoubleClick (oneClick)="checkStrength()" mat-button>
             <svg-icon src="assets/icons/strength.svg" class="icon-hero"></svg-icon>
             FORÇA: {{ playerHero.powerstats.strength }}
           </button>
-          <button (click)="checkSpeed()" mat-button>
+          <button appPreventDoubleClick (oneClick)="checkSpeed()" mat-button>
             <svg-icon src="assets/icons/speed.svg" class="icon-hero"></svg-icon>
             VELOCIDADE: {{ playerHero.powerstats.speed }}
           </button>
         </div>
         <div class="column-2">
-          <button (click)="checkDurability()" mat-button>
+          <button appPreventDoubleClick (oneClick)="checkDurability()" mat-button>
             <svg-icon src="assets/icons/durability.svg" class="icon-hero"></svg-icon>
             RESISTÊNCIA: {{ playerHero.powerstats.durability }}
           </button>
-          <button (click)="checkPower()" mat-button>
+          <button appPreventDoubleClick (oneClick)="checkPower()" mat-button>
             <svg-icon src="assets/icons/power.svg" class="icon-hero"></svg-icon>
             PODER: {{ playerHero.powerstats.power }}
           </button>
-          <button (click)="checkCombat()" mat-button>
+          <button appPreventDoubleClick (oneClick)="checkCombat()" mat-button>
             <svg-icon src="assets/icons/combat.svg" class="icon-hero"></svg-icon>
             COMBATIVIDADE: {{ playerHero.powerstats.combat }}
           </button>
@@ -69,13 +69,19 @@
 
   <mat-card class="options-card">
     <mat-card-header>
-      <mat-card-title style="margin-left: 110px;">OPÇÕES</mat-card-title>
+      <mat-card-title style="margin-left: 130px;">OPÇÕES</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <button (click)="changeCard()" mat-button>TROCAR DE CARTA</button>
-      <button mat-button>DESCOBRIR UMA HABILIDADE ALEATÓRIA</button>
+      <button (click)="changeCard()" mat-button>TROCAR DE CARTA - 3
+        <svg-icon src="assets/icons/coin.svg" class="icon-coin"></svg-icon>
+      </button>
+      <button (click)="showRandomSkill()" mat-button [disabled]="randomSkill">
+        DESCOBRIR UMA HABILIDADE ALEATÓRIA - 1
+        <svg-icon src="assets/icons/coin.svg" class="icon-coin"></svg-icon>
+      </button>
       <button mat-button [matMenuTriggerFor]="menu">
-        DESCOBRIR UMA HABILIDADE
+        DESCOBRIR UMA HABILIDADE - 3 
+        <svg-icon src="assets/icons/coin.svg" class="icon-coin"></svg-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button (click)="showSkill('intelligence')" mat-menu-item *ngIf="IntelligenceOption">
