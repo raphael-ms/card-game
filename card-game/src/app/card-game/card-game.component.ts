@@ -38,6 +38,7 @@ export class CardGameComponent implements OnInit {
   speedOption = true;
   strengthOption = true;
   IntelligenceOption = true;
+  randomSkill = false;
   playerKey: string;
 
   constructor(
@@ -66,14 +67,14 @@ export class CardGameComponent implements OnInit {
     });
   }
 
-  getRandomId(min: number, max: number) {
+  getRandomNumber(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   getPlayerHero() {
-    const id = '' + this.getRandomId(1, 731);
+    const id = '' + this.getRandomNumber(1, 731);
     this.cardGameService.getHero(id).subscribe(heroResult => {
       this.playerHero = heroResult;
       if (this.playerHero.powerstats !== null) {
@@ -87,7 +88,7 @@ export class CardGameComponent implements OnInit {
   }
 
   getEnemyHero() {
-    const id = '' + this.getRandomId(1, 731);
+    const id = '' + this.getRandomNumber(1, 731);
     this.cardGameService.getHero(id).subscribe(heroResult => {
       this.enemyHero = heroResult;
       if (this.enemyHero.powerstats !== null) {
@@ -106,6 +107,7 @@ export class CardGameComponent implements OnInit {
       this.getPlayerHero();
       this.getEnemyHero();
       this.result = '';
+      this.randomSkill = false;
       this.hideEnemyCard();
       this.showOptionSkill();
     }, 2000);
@@ -315,6 +317,37 @@ export class CardGameComponent implements OnInit {
 
   showPowerStatus() {
     this.showPowerStatsCard = true;
+  }
+  showRandomSkill() {
+    if (this.player.coins >= 1) {
+      this.player.coins--;
+      this.randomSkill = true;
+      const skill = '' + this.getRandomNumber(1, 6);
+      if (skill === '1') {
+        this.showIntelligence = true;
+        this.IntelligenceOption = false;
+      }
+      if (skill === '2') {
+        this.showStrength = true;
+        this.strengthOption = false;
+      }
+      if (skill === '3') {
+        this.showSpeed = true;
+        this.speedOption = false;
+      }
+      if (skill === '4') {
+        this.showDurability = true;
+        this.durabilityOption = false;
+      }
+      if (skill === '5') {
+        this.showCombat = true;
+        this.combatOption = false;
+      }
+      if (skill === '6') {
+        this.showPower = true;
+        this.powerOption = false;
+      }
+    }
   }
 
 }

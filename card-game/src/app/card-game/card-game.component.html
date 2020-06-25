@@ -69,13 +69,19 @@
 
   <mat-card class="options-card">
     <mat-card-header>
-      <mat-card-title style="margin-left: 110px;">OPÇÕES</mat-card-title>
+      <mat-card-title style="margin-left: 130px;">OPÇÕES</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <button (click)="changeCard()" mat-button>TROCAR DE CARTA</button>
-      <button mat-button>DESCOBRIR UMA HABILIDADE ALEATÓRIA</button>
+      <button (click)="changeCard()" mat-button>TROCAR DE CARTA - 3
+        <svg-icon src="assets/icons/coin.svg" class="icon-coin"></svg-icon>
+      </button>
+      <button (click)="showRandomSkill()" mat-button [disabled]="randomSkill">
+        DESCOBRIR UMA HABILIDADE ALEATÓRIA - 1
+        <svg-icon src="assets/icons/coin.svg" class="icon-coin"></svg-icon>
+      </button>
       <button mat-button [matMenuTriggerFor]="menu">
-        DESCOBRIR UMA HABILIDADE
+        DESCOBRIR UMA HABILIDADE - 3 
+        <svg-icon src="assets/icons/coin.svg" class="icon-coin"></svg-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button (click)="showSkill('intelligence')" mat-menu-item *ngIf="IntelligenceOption">
