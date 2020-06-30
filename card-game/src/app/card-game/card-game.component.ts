@@ -44,6 +44,8 @@ export class CardGameComponent implements OnInit {
   randomSkill = false;
   playerKey: string;
 
+  showLoading = true;
+
   constructor(
     private cardGameService: CardGameService,
     private playerService: PlayerService,
@@ -69,6 +71,7 @@ export class CardGameComponent implements OnInit {
         this.playerKey = playerList[0].key;
         this.player = playerList[0] as unknown as Player;
       }
+      this.showLoading = false;
     });
   }
 
@@ -130,7 +133,14 @@ export class CardGameComponent implements OnInit {
       this.randomSkill = false;
       this.hideEnemyCard();
       this.showOptionSkill();
+      this.showLoading = true;
     }, 2000);
+
+    setTimeout(x => {
+      this.showLoading = false;
+    }, 3000);
+
+
   }
 
   checkIntelligence() {
