@@ -27,8 +27,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 // custom directives
 import { PreventDoubleClickDirective } from '../directives/no-double-click.directive';
+import { LoadingCardComponent } from './loading-card/loading-card.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent],
   imports: [
     BrowserModule,
     CommonModule,
