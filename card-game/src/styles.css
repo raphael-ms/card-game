@@ -2,8 +2,15 @@
 
 html,
 body {
+    width: auto !important;
     height: 100%;
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: #1898dc;
+}
+
+body app-card-game{
+  position: inherit !important;
+  overflow: auto;
+  min-width: 550px;
 }

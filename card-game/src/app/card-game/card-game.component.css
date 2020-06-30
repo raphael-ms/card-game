@@ -1,8 +1,11 @@
 .player-card {
-  width: 300px;
-  height: 630px;
+  width: 330px;
+  min-width: 300px;
+  height: 530px;
   float: left;
 }
+
+
 .card-wrapper{
   max-width: 300px;
   float: left;
@@ -13,10 +16,12 @@
 }
 
 .enemy-card {
-  max-width: 300px;
+  min-width: 330px;
+  max-width: 330px;
+  height: 530px;
   float: right;
   margin-right: 100px;
-  min-height: 600px;
+  min-height: 530px;
 }
 
 .options-card {
@@ -28,7 +33,17 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 1300px) {
+  .options-card {
+    display: none;
+  }
+}
 
+@media screen and (max-width: 900px) {
+  .enemy-card {
+    margin-right: 20px;
+  }
 }
 
 .icon-hero svg {
@@ -37,7 +52,7 @@
 }
 
 .options {
-max-width: 300px;
+  max-width: 300px;
 }
 
 .options-card button {
@@ -49,12 +64,13 @@ max-width: 300px;
 
 .example-header-image {
   margin: 5px;
-  max-width: 290px;
+  max-width: 320px;
   max-height: 350px;
   background-size: cover;
 }
 
 mat-card {
+  border: 1px solid #ccc;
   margin-top: 20px;
   margin-left: 100px;
 }

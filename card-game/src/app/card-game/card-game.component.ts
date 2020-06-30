@@ -3,12 +3,10 @@ import { Hero } from 'src/model/hero.model';
 import { CardGameService } from './card-game.service';
 import { PlayerService } from '../player.service';
 import { Player } from 'src/model/player.model';
-import { map } from 'rxjs/operators';
 import { UtilsEnum } from 'src/shared/enums/utils.enum';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { MatDialog } from '@angular/material/dialog';
 import { GameOverComponent } from '../game-over/game-over.component';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-card-game',
