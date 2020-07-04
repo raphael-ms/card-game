@@ -141,11 +141,11 @@ export class CardGameComponent implements OnInit {
       this.hideEnemyCard();
       this.showOptionSkill();
       this.showLoading = true;
-    }, 1000);
+    }, 3000);
 
     setTimeout(x => {
       this.showLoading = false;
-    }, 3000);
+    }, 4000);
 
 
   }
