@@ -7,6 +7,11 @@ import { UtilsEnum } from 'src/shared/enums/utils.enum';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { MatDialog } from '@angular/material/dialog';
 import { GameOverComponent } from '../game-over/game-over.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-game',
@@ -47,6 +52,7 @@ export class CardGameComponent implements OnInit {
   constructor(
     private cardGameService: CardGameService,
     private playerService: PlayerService,
+    private snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -123,7 +129,10 @@ export class CardGameComponent implements OnInit {
   }
 
   refreshHeroes() {
-
+    if (this.score !== 0 && this.score % 10 === 0) {
+      this.player.coins += 1;
+      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+    }
     setTimeout(x => {
       this.getPlayerHero();
       this.getEnemyHero();
@@ -132,7 +141,7 @@ export class CardGameComponent implements OnInit {
       this.hideEnemyCard();
       this.showOptionSkill();
       this.showLoading = true;
-    }, 2000);
+    }, 1000);
 
     setTimeout(x => {
       this.showLoading = false;
@@ -281,7 +290,7 @@ export class CardGameComponent implements OnInit {
       this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
       this.getPlayerHero();
     } else {
-      this.result = UtilsEnum.NO_COINS;
+      this.openSnackBar(UtilsEnum.NO_COINS);
     }
   }
 
@@ -323,6 +332,8 @@ export class CardGameComponent implements OnInit {
         this.showStrength = true;
         this.strengthOption = false;
       }
+    } else {
+      this.openSnackBar(UtilsEnum.NO_COINS);
     }
 
   }
@@ -363,7 +374,16 @@ export class CardGameComponent implements OnInit {
         this.showPower = true;
         this.powerOption = false;
       }
+    } else {
+      this.openSnackBar(UtilsEnum.NO_COINS);
     }
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, 'Fechar', {
+      duration: 3000,
+      verticalPosition: 'top'
+    });
   }
 
 }
