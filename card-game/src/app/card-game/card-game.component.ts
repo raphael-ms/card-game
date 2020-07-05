@@ -7,11 +7,7 @@ import { UtilsEnum } from 'src/shared/enums/utils.enum';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { MatDialog } from '@angular/material/dialog';
 import { GameOverComponent } from '../game-over/game-over.component';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-game',
@@ -46,6 +42,7 @@ export class CardGameComponent implements OnInit {
   IntelligenceOption = true;
   randomSkill = false;
   playerKey: string;
+  isClickEnable = true;
 
   showLoading = true;
 
@@ -136,6 +133,7 @@ export class CardGameComponent implements OnInit {
     setTimeout(x => {
       this.getPlayerHero();
       this.getEnemyHero();
+      this.isClickEnable = true;
       this.result = '';
       this.randomSkill = false;
       this.hideEnemyCard();
@@ -151,116 +149,134 @@ export class CardGameComponent implements OnInit {
   }
 
   checkIntelligence() {
-    this.unhideEnemyCard();
-    if (parseInt(this.playerHero.powerstats.intelligence) > parseInt(this.enemyHero.powerstats.intelligence)) {
-      this.score++;
-      this.result = UtilsEnum.MATCH_VICTORY;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.intelligence) === parseInt(this.enemyHero.powerstats.intelligence)) {
-      this.result = UtilsEnum.MATCH_DRAW;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.intelligence) < parseInt(this.enemyHero.powerstats.intelligence)) {
-      this.gameOver();
-      return;
+    if (this.isClickEnable) {
+      this.isClickEnable = false;
+      this.unhideEnemyCard();
+      if (parseInt(this.playerHero.powerstats.intelligence) > parseInt(this.enemyHero.powerstats.intelligence)) {
+        this.score++;
+        this.result = UtilsEnum.MATCH_VICTORY;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.intelligence) === parseInt(this.enemyHero.powerstats.intelligence)) {
+        this.result = UtilsEnum.MATCH_DRAW;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.intelligence) < parseInt(this.enemyHero.powerstats.intelligence)) {
+        this.gameOver();
+        return;
+      }
     }
   }
 
   checkStrength() {
-    this.unhideEnemyCard();
-    if (parseInt(this.playerHero.powerstats.strength) > parseInt(this.enemyHero.powerstats.strength)) {
-      this.score++;
-      this.result = UtilsEnum.MATCH_VICTORY;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.strength) === parseInt(this.enemyHero.powerstats.strength)) {
-      this.refreshHeroes();
-      this.result = UtilsEnum.MATCH_DRAW;
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.strength) < parseInt(this.enemyHero.powerstats.strength)) {
-      this.gameOver();
-      return;
+    if (this.isClickEnable) {
+      this.isClickEnable = false;
+      this.unhideEnemyCard();
+      if (parseInt(this.playerHero.powerstats.strength) > parseInt(this.enemyHero.powerstats.strength)) {
+        this.score++;
+        this.result = UtilsEnum.MATCH_VICTORY;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.strength) === parseInt(this.enemyHero.powerstats.strength)) {
+        this.refreshHeroes();
+        this.result = UtilsEnum.MATCH_DRAW;
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.strength) < parseInt(this.enemyHero.powerstats.strength)) {
+        this.gameOver();
+        return;
+      }
     }
   }
 
   checkSpeed() {
-    this.unhideEnemyCard();
-    if (parseInt(this.playerHero.powerstats.speed) > parseInt(this.enemyHero.powerstats.speed)) {
-      this.score++;
-      this.result = UtilsEnum.MATCH_VICTORY;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.speed) === parseInt(this.enemyHero.powerstats.speed)) {
-      this.result = UtilsEnum.MATCH_DRAW;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.speed) < parseInt(this.enemyHero.powerstats.speed)) {
-      this.gameOver();
-      return;
+    if (this.isClickEnable) {
+      this.isClickEnable = false;
+      this.unhideEnemyCard();
+      if (parseInt(this.playerHero.powerstats.speed) > parseInt(this.enemyHero.powerstats.speed)) {
+        this.score++;
+        this.result = UtilsEnum.MATCH_VICTORY;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.speed) === parseInt(this.enemyHero.powerstats.speed)) {
+        this.result = UtilsEnum.MATCH_DRAW;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.speed) < parseInt(this.enemyHero.powerstats.speed)) {
+        this.gameOver();
+        return;
+      }
     }
   }
 
   checkDurability() {
-    this.unhideEnemyCard();
-    if (parseInt(this.playerHero.powerstats.durability) > parseInt(this.enemyHero.powerstats.durability)) {
-      this.score++;
-      this.result = UtilsEnum.MATCH_VICTORY;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.durability) === parseInt(this.enemyHero.powerstats.durability)) {
-      this.result = UtilsEnum.MATCH_DRAW;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.durability) < parseInt(this.enemyHero.powerstats.durability)) {
-      this.gameOver();
-      return;
+    if (this.isClickEnable) {
+      this.isClickEnable = false;
+      this.unhideEnemyCard();
+      if (parseInt(this.playerHero.powerstats.durability) > parseInt(this.enemyHero.powerstats.durability)) {
+        this.score++;
+        this.result = UtilsEnum.MATCH_VICTORY;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.durability) === parseInt(this.enemyHero.powerstats.durability)) {
+        this.result = UtilsEnum.MATCH_DRAW;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.durability) < parseInt(this.enemyHero.powerstats.durability)) {
+        this.gameOver();
+        return;
+      }
     }
   }
 
   checkPower() {
-    this.unhideEnemyCard();
-    if (parseInt(this.playerHero.powerstats.power) > parseInt(this.enemyHero.powerstats.power)) {
-      this.score++;
-      this.result = UtilsEnum.MATCH_VICTORY;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.power) === parseInt(this.enemyHero.powerstats.power)) {
-      this.result = UtilsEnum.MATCH_DRAW;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.power) < parseInt(this.enemyHero.powerstats.power)) {
-      this.gameOver();
-      return;
+    if (this.isClickEnable) {
+      this.isClickEnable = false;
+      this.unhideEnemyCard();
+      if (parseInt(this.playerHero.powerstats.power) > parseInt(this.enemyHero.powerstats.power)) {
+        this.score++;
+        this.result = UtilsEnum.MATCH_VICTORY;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.power) === parseInt(this.enemyHero.powerstats.power)) {
+        this.result = UtilsEnum.MATCH_DRAW;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.power) < parseInt(this.enemyHero.powerstats.power)) {
+        this.gameOver();
+        return;
+      }
     }
   }
 
   checkCombat() {
-    this.unhideEnemyCard();
-    if (parseInt(this.playerHero.powerstats.combat) > parseInt(this.enemyHero.powerstats.combat)) {
-      this.score++;
-      this.result = UtilsEnum.MATCH_VICTORY;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.combat) === parseInt(this.enemyHero.powerstats.combat)) {
-      this.result = UtilsEnum.MATCH_DRAW;
-      this.refreshHeroes();
-      return;
-    }
-    if (parseInt(this.playerHero.powerstats.combat) < parseInt(this.enemyHero.powerstats.combat)) {
-      this.gameOver();
-      return;
+    if (this.isClickEnable) {
+      this.isClickEnable = false;
+      this.unhideEnemyCard();
+      if (parseInt(this.playerHero.powerstats.combat) > parseInt(this.enemyHero.powerstats.combat)) {
+        this.score++;
+        this.result = UtilsEnum.MATCH_VICTORY;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.combat) === parseInt(this.enemyHero.powerstats.combat)) {
+        this.result = UtilsEnum.MATCH_DRAW;
+        this.refreshHeroes();
+        return;
+      }
+      if (parseInt(this.playerHero.powerstats.combat) < parseInt(this.enemyHero.powerstats.combat)) {
+        this.gameOver();
+        return;
+      }
     }
   }
 
@@ -289,6 +305,7 @@ export class CardGameComponent implements OnInit {
       this.player.coins -= 3;
       this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
       this.getPlayerHero();
+      this.getEnemyHero();
     } else {
       this.openSnackBar(UtilsEnum.NO_COINS);
     }
