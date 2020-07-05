@@ -24,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { environment } from 'src/environments/environment';
 import { GameOverComponent } from './game-over/game-over.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // custom directives
 import { PreventDoubleClickDirective } from '../directives/no-double-click.directive';
@@ -50,7 +51,8 @@ import { LoadingCardComponent } from './loading-card/loading-card.component';
     MatInputModule,
     MatTooltipModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],
