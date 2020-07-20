@@ -1,14 +1,28 @@
-.banner {
-  margin-top: 30px;
-  background-image: url('../../assets/game-over.gif');
+.banner-image {
   background-position: center;
   background-repeat: no-repeat;
-  height: 90px;
+  width: 100%;
+  height: auto;
+  display:block;
 }
 
-.body {
-  min-width: 500px;
-  min-height: 320px;
+.banner {
+  width: 500px;
+}
+
+@media only screen and (max-width: 900px) {
+  .banner {
+    width: 300px;
+  }
+  .user-info {
+    margin-top: -60px !important;
+  }
+}
+
+
+
+.user-info {
+  margin-top: -110px;
 }
 
 .record {
@@ -16,9 +30,9 @@
 }
 
 .try-again-button {
-  width: 500px;
-    height: 60px;
-    background-color: #1898dc;
-    color: white;
-    font-size: 20px;
+  width: 100%;
+  height: 60px;
+  background-color: #1898dc;
+  color: white;
+  font-size: 20px;
 }

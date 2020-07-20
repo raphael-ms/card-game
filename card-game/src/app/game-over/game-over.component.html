@@ -1,8 +1,10 @@
-<div class="body">
-  <div class="banner"></div>
-  <div mat-dialog-content>
+<div fxLayout="column wrap" fxLayoutAlign="center stretch"  class="body">
+  <div class="banner">
+    <img src="../../assets/game-over.gif" class="banner-image">
+  </div>
+  <div mat-dialog-content class="user-info">
     <h2> Usuário: {{data.player.name}}</h2>
-    <h3> Pontuação: {{data.score}} </h3>
+    <h2> Pontuação: {{data.score}} </h2>
   </div>
   <div class="record" *ngIf="data.score > data.player.maxScore">
     <h1>NOVO RECORDE</h1>
