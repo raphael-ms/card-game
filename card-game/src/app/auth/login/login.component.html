@@ -30,7 +30,7 @@
       <input type="password" [(ngModel)]="password" placeholder="Senha" />
       <span style="color: red;" [@fallIn]='state'> {{ errorMessage }}</span>
       <button (click)="validate()">Entrar</button>
-      <a (click)="showForgotPass()">Esqueceu sua senha?</a>
+      <a id="forget-password" (click)="showForgotPass()">Esqueceu sua senha?</a>
       <div *ngIf="showRecover">
         <input type="email" [(ngModel)]="emailRecovery" placeholder="Email" />
         <button (click)="emailRecover()">Enviar senha</button>
