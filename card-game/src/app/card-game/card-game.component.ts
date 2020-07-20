@@ -112,6 +112,7 @@ export class CardGameComponent implements OnInit {
   }
 
   getEnemyHero() {
+    this.hideEnemyCard();
     const id = '' + this.getRandomNumber(1, 731);
     this.cardGameService.getHero(id).subscribe(heroResult => {
       this.enemyHero = heroResult;
