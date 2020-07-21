@@ -1,10 +1,10 @@
 <mat-toolbar>
   Super Card Battle
   <span class="example-spacer"></span>
-  <span class="score-box">Moedas: {{ coins }}</span>
+  <span class="score-box">Coins: {{ coins }}</span>
   <svg-icon src="assets/icons/coins.svg" class="icon-coin"></svg-icon>
-  <span class="score-box">Pontuação: {{ score }}</span>
+  <span class="score-box">Points: {{ score }}</span>
   <button (click)="logoutUser()" mat-mini-fab color="primary">
-    <mat-icon matTooltip="Sair">exit_to_app</mat-icon>
+    <mat-icon matTooltip="Log out">exit_to_app</mat-icon>
   </button>
 </mat-toolbar>

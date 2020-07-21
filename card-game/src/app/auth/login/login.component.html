@@ -1,53 +1,53 @@
 <div class="container" id="container">
   <div class="form-container sign-up-container">
     <div class="form">
-      <h1>Criar Conta</h1>
+      <h1>Create an account</h1>
       <div class="social-container">
         <button (click)="googleLogin()">
           <svg-icon src="assets/icons/google-icon.svg" class="icon-hero"></svg-icon>
-          <span style="margin-left: 13px;">Criar com Google</span>
+          <span style="margin-left: 12px;">SignUp with google</span>
         </button>
       </div>
-      <span>ou</span>
-      <input matInput type="text" [(ngModel)]="name" placeholder="Nome" />
+      <span>or</span>
+      <input matInput type="text" [(ngModel)]="name" placeholder="Name" />
       <input type="email" [(ngModel)]="email" placeholder="Email" />
-      <input type="password" [(ngModel)]="password" placeholder="Senha" />
+      <input type="password" [(ngModel)]="password" placeholder="Password" />
       <span style="color: red;" [@fallIn]='state'> {{ errorMessage }}</span>
-      <button (click)="register()">Registrar</button>
+      <button (click)="register()">Sign Up</button>
     </div>
   </div>
   <div class="form-container sign-in-container">
     <div class="form" action="#">
-      <h1>Entrar</h1>
+      <h1>Log in</h1>
       <div class="social-container">
         <button (click)="googleLogin()">
           <svg-icon src="assets/icons/google-icon.svg" class="icon-hero"></svg-icon>
-          <span style="margin-left: 13px;">Entrar com Google</span>
+          <span style="margin-left: 13px;">Log in with google</span>
         </button>
       </div>
       <span>ou</span>
       <input type="email" [(ngModel)]="email" placeholder="Email" />
-      <input type="password" [(ngModel)]="password" placeholder="Senha" />
+      <input type="password" [(ngModel)]="password" placeholder="Password" />
       <span style="color: red;" [@fallIn]='state'> {{ errorMessage }}</span>
-      <button (click)="validate()">Entrar</button>
-      <a id="forget-password" (click)="showForgotPass()">Esqueceu sua senha?</a>
+      <button (click)="validate()">Log in</button>
+      <a id="forget-password" (click)="showForgotPass()">Forgot your password?</a>
       <div *ngIf="showRecover">
         <input type="email" [(ngModel)]="emailRecovery" placeholder="Email" />
-        <button (click)="emailRecover()">Enviar senha</button>
+        <button (click)="emailRecover()">Send e-mail</button>
       </div>
     </div>
   </div>
   <div class="overlay-container">
     <div class="overlay">
       <div class="overlay-panel overlay-left">
-        <h1>Bem-vindo de volta!</h1>
-        <p>Para se manter conectado informe sua conta</p>
-        <button class="ghost" (click)="clearBox()" id="signIn">Entrar</button>
+        <h1>Wellcome back!</h1>
+        <p>To keep connected log in</p>
+        <button class="ghost" (click)="clearBox()" id="signIn">Log in</button>
       </div>
       <div class="overlay-panel overlay-right">
-        <h1>Olá!</h1>
-        <p>Entre com suas informações pessoais para que a jornada comece</p>
-        <button class="ghost" (click)="clearBox()" id="signUp">Registrar</button>
+        <h1>Hello there!</h1>
+        <p>You're few steps away to begin your journey</p>
+        <button class="ghost" (click)="clearBox()" id="signUp">Sign up</button>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
 export enum ValidationEnum {
+  EMPTY_NAME_MSG_US = 'EMPTY NAME',
   EMPTY_NAME_MSG = 'NOME VAZIO: Informe seu nome, corretamente',
   INVALID_EMAIL = 'auth/invalid-email',
   INVALID_EMAIL_MSG = 'E-MAIL INCORRETO: O e-mail informado esta mal formatado',

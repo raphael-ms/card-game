@@ -3,13 +3,13 @@
     <img src="../../assets/game-over.gif" class="banner-image">
   </div>
   <div mat-dialog-content class="user-info">
-    <h2> Usuário: {{data.player.name}}</h2>
-    <h2> Pontuação: {{data.score}} </h2>
+    <h2> User: {{data.player.name}}</h2>
+    <h2> Points: {{data.score}} </h2>
   </div>
   <div class="record" *ngIf="data.score > data.player.maxScore">
-    <h1>NOVO RECORDE</h1>
+    <h1 i18n>New Record</h1>
   </div>
   <div mat-dialog-actions>
-    <button class="try-again-button" mat-button [mat-dialog-close]>JOGAR NOVAMENTE</button>
+    <button class="try-again-button" mat-button [mat-dialog-close] i18n>PLAY AGAIN</button>
   </div>
 </div>

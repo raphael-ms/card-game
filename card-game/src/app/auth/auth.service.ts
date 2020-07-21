@@ -24,7 +24,7 @@ export class AuthService {
 
   async register(email: string, password: string, userInformed: string) {
     if (userInformed === '') {
-      throw new Error(ValidationEnum.EMPTY_NAME_MSG);
+      throw new Error(ValidationEnum.EMPTY_NAME_MSG_US);
     }
     const result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(value => {
       this.afAuth.auth.currentUser.updateProfile({
@@ -35,15 +35,17 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
     })
       .catch(err => {
-        if (err.code === ValidationEnum.INVALID_EMAIL) {
-          throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
-        }
-        if (err.code === ValidationEnum.WEAK_PASSWORD) {
-          throw new Error(ValidationEnum.WEAK_PASSWORD_MSG);
-        }
-        if (err.code === ValidationEnum.EMAIL_IN_USE) {
-          throw new Error(ValidationEnum.EMAIL_IN_USE_MSG);
-        }
+        throw new Error(err);
+        // Wait till localization be configured
+        // if (err.code === ValidationEnum.INVALID_EMAIL) {
+        //   throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
+        // }
+        // if (err.code === ValidationEnum.WEAK_PASSWORD) {
+        //   throw new Error(ValidationEnum.WEAK_PASSWORD_MSG);
+        // }
+        // if (err.code === ValidationEnum.EMAIL_IN_USE) {
+        //   throw new Error(ValidationEnum.EMAIL_IN_USE_MSG);
+        // }
 
       });
   }
@@ -57,27 +59,29 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(this.afAuth.auth.currentUser));
       })
       .catch(err => {
-        if (err.code === ValidationEnum.INVALID_EMAIL) {
-          throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
-        }
-        if (err.code === ValidationEnum.WRONG_PASSWORD) {
-          throw new Error(ValidationEnum.WRONG_PASSWORD_MSG);
-        }
-        if (err.code === ValidationEnum.USER_NOT_FOUND) {
-          throw new Error(ValidationEnum.USER_NOT_FOUND_MSG);
-        }
+        throw new Error(err);
+        // if (err.code === ValidationEnum.INVALID_EMAIL) {
+        //   throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
+        // }
+        // if (err.code === ValidationEnum.WRONG_PASSWORD) {
+        //   throw new Error(ValidationEnum.WRONG_PASSWORD_MSG);
+        // }
+        // if (err.code === ValidationEnum.USER_NOT_FOUND) {
+        //   throw new Error(ValidationEnum.USER_NOT_FOUND_MSG);
+        // }
       });
   }
 
   async sendPasswordResetEmail(passwordResetEmail: string) {
     await this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail).then()
       .catch(err => {
-        if (err.code === ValidationEnum.INVALID_EMAIL) {
-          throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
-        }
-        if (err.code === ValidationEnum.USER_NOT_FOUND) {
-          throw new Error(ValidationEnum.USER_NOT_FOUND_MSG);
-        }
+        throw new Error(err);
+        // if (err.code === ValidationEnum.INVALID_EMAIL) {
+        //   throw new Error(ValidationEnum.INVALID_EMAIL_MSG);
+        // }
+        // if (err.code === ValidationEnum.USER_NOT_FOUND) {
+        //   throw new Error(ValidationEnum.USER_NOT_FOUND_MSG);
+        // }
       });
 
   }
