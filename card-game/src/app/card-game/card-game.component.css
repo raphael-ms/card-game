@@ -3,8 +3,20 @@
   min-width: 300px;
   height: 530px;
 }
-
-
+/*
+mat-card :before {
+  content: '';
+  background: #000;
+  z-index: 1;
+}
+mat-card :before, mat-card :after {
+  background: linear-gradient(235deg, #89ff00, #010615, #00bcd4);
+}
+mat-card :after {
+  content: '';
+  z-index: 0;
+  filter: blur(40px);
+} */
 
 .card-wrapper{
   max-width: 300px;
