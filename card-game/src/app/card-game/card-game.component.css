@@ -4,6 +4,8 @@
   height: 530px;
 }
 
+
+
 .card-wrapper{
   max-width: 300px;
   float: left;
@@ -21,7 +23,7 @@
 }
 
 .options-card {
-  max-width: 350px;
+  max-width: 330px;
   margin-left: 200px;
   margin: 0;
 }
@@ -36,7 +38,7 @@
 }
 
 .options-card button {
-  width: 350px;
+  width: 335px;
   margin: 1px;
   background-color: teal;
   color: white;

@@ -93,11 +93,12 @@ export class CardGameComponent implements OnInit {
       }
       this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
       this.score = 0;
-      this.refreshHeroes();
+      this.refreshHeroesInsta();
     });
   }
 
   getPlayerHero() {
+    this.showLoading = true;
     const id = '' + this.getRandomNumber(1, 731);
     this.cardGameService.getHero(id).subscribe(heroResult => {
       this.playerHero = heroResult;
@@ -108,10 +109,12 @@ export class CardGameComponent implements OnInit {
           this.getPlayerHero();
         }
       }
+      this.showLoading = false;
     });
   }
 
   getEnemyHero() {
+    this.showLoading = true;
     this.hideEnemyCard();
     const id = '' + this.getRandomNumber(1, 731);
     this.cardGameService.getHero(id).subscribe(heroResult => {
@@ -123,6 +126,7 @@ export class CardGameComponent implements OnInit {
           this.getEnemyHero();
         }
       }
+      this.showLoading = false;
     });
   }
 
@@ -145,8 +149,20 @@ export class CardGameComponent implements OnInit {
     setTimeout(x => {
       this.showLoading = false;
     }, 4000);
+  }
 
-
+  refreshHeroesInsta() {
+    if (this.score !== 0 && this.score % 10 === 0) {
+      this.player.coins += 1;
+      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+    }
+    this.getPlayerHero();
+    this.getEnemyHero();
+    this.isClickEnable = true;
+    this.result = '';
+    this.randomSkill = false;
+    this.hideEnemyCard();
+    this.showOptionSkill();
   }
 
   checkIntelligence() {
