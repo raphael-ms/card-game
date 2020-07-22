@@ -3,5 +3,5 @@ export enum UtilsEnum {
   NO_COINS = 'NO COINS',
   MATCH_VICTORY = 'VICTORY',
   MATCH_DEFEAT = 'DEFEAT',
-  MATCH_DRAW = 'A TIE'
+  MATCH_DRAW = 'TIE'
 }
