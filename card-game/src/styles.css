@@ -9,6 +9,10 @@ body {
     background-color: #1898dc;
 }
 
+.mat-toolbar {
+  background: white !important;
+}
+
 body app-card-game{
   position: inherit !important;
   overflow: auto;

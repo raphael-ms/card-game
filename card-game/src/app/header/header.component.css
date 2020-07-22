@@ -8,6 +8,10 @@
 
 .icon-coin svg{
   width: 30px;
-  height: 30px; 
+  height: 30px;
   vertical-align: middle;
+}
+
+.banner-image {
+  width: 180px;
 }
