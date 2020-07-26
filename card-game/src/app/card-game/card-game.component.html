@@ -1,4 +1,6 @@
+
 <div class="main-div" [@moveInLeft]="state">
+  <app-block-ui [isLoading]="!player"></app-block-ui>
   <div fxLayout="column wrap" fxLayoutAlign="center stretch">
     <app-game-header *ngIf="player" fxFlex="100%" fxFlex.sm="100%" [coins]="player.coins" [score]="score">
     </app-game-header>
@@ -76,7 +78,8 @@
         fxLayoutAlign="center center">
         <div div fxLayout="column" fxLayoutAlign="space-around center">
           <div class="result-box">
-            <h1>{{ result }}</h1>
+            <!-- <img *ngIf="result != ''" class="loading" src="../../assets/{{result}}.png" class="banner-image"> -->
+            <h1  fxLayoutAlign="space-around center">{{ result|uppercase }}</h1>
           </div>
 
           <mat-card class="options-card mat-elevation-z24">
@@ -128,6 +131,7 @@
       <div id="right" fxFlex="33%" fxFlex.xs="100%" fxFlex.md="100%" fxFlex.lg="33%" fxFlex.sm="100%"
         fxLayoutAlign="center center">
         <mat-card *ngIf="enemyHero" class="enemy-card mat-elevation-z24">
+          <app-loading-card *ngIf="!showEnemy"></app-loading-card>
           <mat-card-header *ngIf="showEnemy">
             <mat-card-title>{{ enemyHero.name }}</mat-card-title>
             <mat-card-subtitle>{{

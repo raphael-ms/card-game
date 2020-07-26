@@ -97,10 +97,8 @@ mat-card-header {
 
 .result-box {
   color: white;
-  width: 70px;
+  width: 330px;
   height: 70px;
-  margin-left: -50px;
-  z-index: 99999;
 }
 
 .wrapper-card-info-header-about a{

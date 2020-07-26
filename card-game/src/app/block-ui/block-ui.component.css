@@ -1,0 +1,19 @@
+.loadingui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 999999;
+}
+
+.loadingui mat-progress-bar {
+  height: 5px;
+}
+
+.loadingui img {
+  position: absolute;
+  top: 45%;
+  left: 48%;
+}

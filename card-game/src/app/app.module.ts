@@ -26,12 +26,14 @@ import { GameOverComponent } from './game-over/game-over.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 // custom directives
 import { PreventDoubleClickDirective } from '../directives/no-double-click.directive';
 import { LoadingCardComponent } from './loading-card/loading-card.component';
+import { RankingComponent } from './ranking/ranking.component';
+import { BlockUiComponent } from './block-ui/block-ui.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent, RankingComponent, BlockUiComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -43,6 +45,7 @@ import { LoadingCardComponent } from './loading-card/loading-card.component';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    MatProgressBarModule,
     MatMenuModule,
     AngularFireModule.initializeApp(environment.config),
     AngularSvgIconModule.forRoot(),
