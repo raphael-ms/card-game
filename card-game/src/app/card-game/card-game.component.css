@@ -97,8 +97,8 @@ mat-card-header {
 
 .result-box {
   color: white;
-  width: 330px;
-  height: 70px;
+  height: 150px;
+  align-items: center;
 }
 
 .wrapper-card-info-header-about a{

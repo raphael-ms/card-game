@@ -1,5 +1,4 @@
 <div class="main-div" [@moveInLeft]="state">
-  <app-ranking></app-ranking>
   <app-block-ui [isLoading]="!player"></app-block-ui>
   <div fxLayout="column wrap" fxLayoutAlign="center stretch">
     <app-game-header *ngIf="player" fxFlex="100%" fxFlex.sm="100%" [coins]="player.coins" [score]="score">
@@ -78,7 +77,7 @@
         fxLayoutAlign="center center">
         <div div fxLayout="column" fxLayoutAlign="space-around center">
           <div class="result-box">
-            <img *ngIf="result != ''" class="loading" src="../../assets/{{result}}.png" class="banner-image">
+            <img *ngIf="result != ''" fxLayoutAlign="space-around center" src="../../assets/{{result}}.png">
             <!-- <h1  fxLayoutAlign="space-around center">{{ result|uppercase }}</h1> -->
           </div>
 

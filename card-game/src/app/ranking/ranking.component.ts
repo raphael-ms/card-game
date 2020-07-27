@@ -25,7 +25,6 @@ export class RankingComponent implements OnInit {
       this.playersList.reverse();
       for (let i = 0; i < this.playersList.length; i++) {
         this.playersList[i].position = i + 1;
-        //this.playersList[i] = new PlayerStats(player.coins, i + 1, player.maxScore, player.name);
       }
       this.dataSource = new MatTableDataSource(this.playersList);
       this.dataSource.paginator = this.paginator;
