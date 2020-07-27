@@ -8,6 +8,7 @@ import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { MatDialog } from '@angular/material/dialog';
 import { GameOverComponent } from '../game-over/game-over.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { element } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-card-game',
@@ -58,8 +59,8 @@ export class CardGameComponent implements OnInit {
     this.userLogged = JSON.parse(localStorage.getItem('user'));
     const displayName = JSON.parse(localStorage.getItem('displayName'));
     this.playerService.getItemList(this.userLogged.uid).subscribe(playerList => {
+      this.player = new Player();
       if (playerList.length === 0) {
-        this.player = new Player();
         if (displayName !== null) {
           this.player.name = displayName;
         } else {
@@ -69,8 +70,9 @@ export class CardGameComponent implements OnInit {
         this.player.coins = UtilsEnum.INITIAL_COINS;
         this.playerService.insert(this.userLogged.uid, this.player);
       } else {
-        this.playerKey = playerList[0].key;
-        this.player = playerList[0] as unknown as Player;
+        playerList.forEach(result => {
+          this.player[result.key] = result.value;
+        });
       }
       this.showLoading = false;
     });
@@ -91,7 +93,7 @@ export class CardGameComponent implements OnInit {
       if (this.player.maxScore < this.score) {
         this.player.maxScore = this.score;
       }
-      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+      this.playerService.update(this.player, this.userLogged.uid);
       this.score = 0;
       this.refreshHeroesInsta();
     });
@@ -133,7 +135,7 @@ export class CardGameComponent implements OnInit {
   refreshHeroes() {
     if (this.score !== 0 && this.score % 10 === 0) {
       this.player.coins += 1;
-      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+      this.playerService.update(this.player, this.userLogged.uid);
     }
     setTimeout(x => {
       this.getPlayerHero();
@@ -154,7 +156,7 @@ export class CardGameComponent implements OnInit {
   refreshHeroesInsta() {
     if (this.score !== 0 && this.score % 10 === 0) {
       this.player.coins += 1;
-      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+      this.playerService.update(this.player, this.userLogged.uid);
     }
     this.getPlayerHero();
     this.getEnemyHero();
@@ -320,7 +322,7 @@ export class CardGameComponent implements OnInit {
   changeCard() {
     if (this.player.coins >= 3) {
       this.player.coins -= 3;
-      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+      this.playerService.update(this.player, this.userLogged.uid);
       this.getPlayerHero();
       this.getEnemyHero();
     } else {
@@ -341,7 +343,7 @@ export class CardGameComponent implements OnInit {
   showSkill(skill: string) {
     if (this.player.coins >= 3) {
       this.player.coins -= 3;
-      this.playerService.update(this.player, this.userLogged.uid, this.playerKey);
+      this.playerService.update(this.player, this.userLogged.uid);
       if (skill === 'power') {
         this.showPower = true;
         this.powerOption = false;

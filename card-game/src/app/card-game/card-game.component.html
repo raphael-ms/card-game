@@ -1,5 +1,5 @@
-
 <div class="main-div" [@moveInLeft]="state">
+  <app-ranking></app-ranking>
   <app-block-ui [isLoading]="!player"></app-block-ui>
   <div fxLayout="column wrap" fxLayoutAlign="center stretch">
     <app-game-header *ngIf="player" fxFlex="100%" fxFlex.sm="100%" [coins]="player.coins" [score]="score">

@@ -32,6 +32,8 @@ import { PreventDoubleClickDirective } from '../directives/no-double-click.direc
 import { LoadingCardComponent } from './loading-card/loading-card.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { BlockUiComponent } from './block-ui/block-ui.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent, RankingComponent, BlockUiComponent],
   imports: [
@@ -39,8 +41,10 @@ import { BlockUiComponent } from './block-ui/block-ui.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatPaginatorModule,
     AppRoutingModule,
     HttpClientModule,
+    MatTableModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,

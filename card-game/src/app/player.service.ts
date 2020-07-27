@@ -24,34 +24,37 @@ export class PlayerService {
 
 
   getItemList(uid: string) {
-      return this.db.list(`player/${uid}`).snapshotChanges()
-        .pipe(
-          map(changes => {
-            return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-          })
-        );
+    return this.db.list(`player/${uid}`)
+      .snapshotChanges()
+      .pipe(
+        map(changes => {
+          return changes.map(c => ({ key: c.payload.key, value: c.payload.val() }));
+          // return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        })
+      );
   }
 
   insert(key: string, player: Player) {
-    this.db.list(`player/${key}`).push(player)
+    this.db.object(`player/${key}`).set(player)
       .then((result: any) => {
         console.log(result.key);
       });
   }
 
-  update(player: Player, uid: string, key: string) {
-    this.db.list(`player/${uid}`).update(key, player)
+  update(player: Player, uid: string) {
+    this.db.object(`player/${uid}`).set(player)
       .catch((error: any) => {
         console.error(error);
       });
   }
 
   getAll() {
-    return this.db.list('player')
+    return this.db.list('player', ref => ref.orderByChild('maxScore').limitToFirst(1000))
       .snapshotChanges()
       .pipe(
         map(changes => {
-          return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+          return changes.map(c => c.payload.val());
+          // return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         })
       );
   }
