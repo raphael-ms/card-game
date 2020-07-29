@@ -34,8 +34,10 @@ import { RankingComponent } from './ranking/ranking.component';
 import { BlockUiComponent } from './block-ui/block-ui.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { FinalScreenComponent } from './final-screen/final-screen.component';
+
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent, RankingComponent, BlockUiComponent],
+  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent, RankingComponent, BlockUiComponent, FinalScreenComponent],
   imports: [
     BrowserModule,
     CommonModule,
