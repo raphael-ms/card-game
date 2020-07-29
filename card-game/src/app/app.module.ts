@@ -35,6 +35,7 @@ import { BlockUiComponent } from './block-ui/block-ui.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { FinalScreenComponent } from './final-screen/final-screen.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent, RankingComponent, BlockUiComponent, FinalScreenComponent],
@@ -51,6 +52,7 @@ import { FinalScreenComponent } from './final-screen/final-screen.component';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    MatTabsModule,
     MatProgressBarModule,
     MatMenuModule,
     AngularFireModule.initializeApp(environment.config),
