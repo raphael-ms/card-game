@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { GameOverData } from 'src/shared/interface/game-over-data.interface';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-final-screen',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinalScreenComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: GameOverData) { }
 
   ngOnInit() {
   }

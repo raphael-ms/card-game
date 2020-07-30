@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GameOverData } from 'src/shared/interface/game-over-data.interface';
 
@@ -8,8 +8,10 @@ import { GameOverData } from 'src/shared/interface/game-over-data.interface';
   styleUrls: ['./game-over.component.css']
 })
 export class GameOverComponent implements OnInit {
+  @Input() data: GameOverData;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: GameOverData) {}
+
+  constructor() {}
 
   ngOnInit() {
   }

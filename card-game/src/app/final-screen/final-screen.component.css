@@ -1,0 +1,13 @@
+
+::ng-deep .mat-tab-body-content {
+  max-height: 450px !important;
+  height: 430px !important;
+}
+
+
+@media only screen and (max-width: 900px) {
+  ::ng-deep .mat-tab-body-content {
+    max-height: 450px !important;
+    height: 260px !important;
+  }
+}

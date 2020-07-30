@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GameOverComponent } from '../game-over/game-over.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { element } from '@angular/core/src/render3';
+import { FinalScreenComponent } from '../final-screen/final-screen.component';
 
 @Component({
   selector: 'app-card-game',
@@ -86,7 +87,7 @@ export class CardGameComponent implements OnInit {
 
 
   gameOver() {
-    const dialogRef = this.dialog.open(GameOverComponent, {
+    const dialogRef = this.dialog.open(FinalScreenComponent, {
       data: { player: this.player, score: this.score }
     });
     dialogRef.afterClosed().subscribe(result => {

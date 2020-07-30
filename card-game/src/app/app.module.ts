@@ -38,7 +38,16 @@ import { FinalScreenComponent } from './final-screen/final-screen.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoginComponent, CardGameComponent, GameOverComponent, PreventDoubleClickDirective, LoadingCardComponent, RankingComponent, BlockUiComponent, FinalScreenComponent],
+  declarations: [AppComponent,
+    HeaderComponent,
+    LoginComponent,
+    CardGameComponent,
+    GameOverComponent,
+    PreventDoubleClickDirective,
+    LoadingCardComponent,
+    RankingComponent,
+    BlockUiComponent,
+    FinalScreenComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -69,6 +78,6 @@ import { MatTabsModule } from '@angular/material/tabs';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [GameOverComponent]
+  entryComponents: [FinalScreenComponent, GameOverComponent]
 })
 export class AppModule { }

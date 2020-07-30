@@ -1,4 +1,8 @@
 <mat-tab-group mat-align-tabs="start">
-  <mat-tab label="Overview">Content 1</mat-tab>
-  <mat-tab label="Ranking">Content 2</mat-tab>
+  <mat-tab  label="Overview">
+    <app-game-over [data]="data"></app-game-over>
+  </mat-tab>
+  <mat-tab style="max-height: 450px;" label="Ranking">
+    <app-ranking></app-ranking>
+  </mat-tab>
 </mat-tab-group>

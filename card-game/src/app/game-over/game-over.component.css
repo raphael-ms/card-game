@@ -12,15 +12,20 @@
 
 @media only screen and (max-width: 900px) {
   .banner {
-    width: 300px;
+    width: 250px;
   }
   .user-info {
     margin-top: -60px !important;
+  }
+
+  h2 {
+    font-size: 14px;
   }
 }
 
 
 .user-info {
+  width: 86%;
   margin-top: -110px;
 }
 
