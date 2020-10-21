@@ -88,7 +88,8 @@ export class CardGameComponent implements OnInit {
 
   gameOver() {
     const dialogRef = this.dialog.open(FinalScreenComponent, {
-      data: { player: this.player, score: this.score }
+      data: { player: this.player, score: this.score },
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe(result => {
       if (this.player.maxScore < this.score) {
