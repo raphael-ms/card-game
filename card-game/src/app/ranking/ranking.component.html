@@ -4,7 +4,7 @@
 </mat-form-field>
 
 <div *ngIf="dataSource" class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table id="table" [dataSource]="dataSource">
 
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> # </th>

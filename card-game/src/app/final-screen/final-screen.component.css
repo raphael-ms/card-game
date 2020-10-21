@@ -2,6 +2,7 @@
 ::ng-deep .mat-tab-body-content {
   max-height: 450px !important;
   height: 430px !important;
+  width: 500px;
 }
 
 
@@ -9,5 +10,6 @@
   ::ng-deep .mat-tab-body-content {
     max-height: 450px !important;
     height: 260px !important;
+    width: auto;
   }
 }

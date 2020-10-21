@@ -11,11 +11,19 @@ import { PlayerStats } from './model/playerStats.model';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent implements OnInit {
+  private paginator: MatPaginator;
   playersList: PlayerStats[];
   displayedColumns: string[] = ['position', 'name', 'points'];
   dataSource: MatTableDataSource<PlayerStats>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp;
+    this.setDataSourceAttributes();
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   constructor(private playerService: PlayerService) { }
 
