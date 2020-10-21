@@ -1,5 +1,5 @@
 # Super Card Battle
-It's a card similar to Super Trunfo, where you get a random card with power-stats from 0 to 100 and you have to choose one to compare with enemy card, if your choosed option is bigger than the enemy you get +1 point, if its the same, the cards are renewed, and if it's smaller you lose.
+It's a card game similar to Super Trunfo, where every turn you get a new random card with power-stats (from 0 to 100) and you have to choose one skill to compare with enemy card, if your skill is bigger than the enemy you get a point, if its the same you just get another card, and if it's smaller you lose.
 
 There's some options inside the game, for example: Pick another card, get a random enemy powerstat and pick an enemy powerstat. Each one cost some coins, when you play for the first time you get 10 coins, and everytime that you reach 10 points you get +1 coin.
 
